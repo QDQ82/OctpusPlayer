@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="300dp"
+    android:layout_height="150dp"
+    android:background="#3c3f41">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="100dp">
+
+    <TextView
+        android:id="@+id/cde_TextView"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:paddingLeft="10dp"
+        android:text="이름"
+        android:textColor="#FFA500"
+        android:background="@android:color/transparent"
+        android:textSize="16dp" />
+
+    <EditText
+        android:id="@+id/cde_EditText"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_weight="1"
+        android:gravity="center_vertical"
+        android:paddingLeft="10dp"
+        android:hint="변경할 카메라 이름을 입력하세요."
+        android:backgroundTint="#ffffff"
+        android:textColor="#ffffff"
+        android:textSize="16dp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/cde_cancelButton"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="취소"
+            android:textColor="#FFA500"
+            android:background="@android:color/transparent"
+            android:textSize="16dp" />
+
+        <Button
+            android:id="@+id/cde_okButton"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="확인"
+            android:textColor="#FFA500"
+            android:background="@android:color/transparent"
+            android:textSize="16dp"
+            />
+
+    </LinearLayout>
+</LinearLayout>

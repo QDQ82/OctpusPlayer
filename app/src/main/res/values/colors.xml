@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#FFA500</color>
+    <color name="colorPrimaryDark">#2E2E2E</color>
+    <color name="colorAccent">#FFA500</color>
+    <color name="maincolor">#FFA500</color>
+    <color name="white">#FFFFFF</color>
+    <color name="selectview">#FF0000</color>
+    <color name="VideoControl_LandScape">#B3000000</color>
+    <color name="VideoControl_Portrait">#333c3f41</color>
+    <color name="mainorange">#e57e19</color>
+    <color name="black">#000000</color>
+    <color name="splashback">#0c1115</color>
+    <color name="mainbackcolor">#212121</color>
+    <color name="linecolor">#3c3c3c</color>
+</resources>

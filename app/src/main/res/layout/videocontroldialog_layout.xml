@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/vc_botpanel"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:gravity="center_horizontal|center_vertical"
+    android:background="@color/VideoControl_Portrait"
+    android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal|center_vertical">
+
+            <Button
+                android:id="@+id/ptz_zoomin"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/image_btn_ptz_zoom_in_def"/>
+            <Button
+                android:id="@+id/ptz_up"
+                android:layout_width="35dp"
+                android:layout_margin="5dp"
+                android:layout_height="35dp"
+                android:background="@drawable/image_btn_ptz_up_def" />
+
+            <Button
+                android:id="@+id/ptz_zoomout"
+                android:layout_width="35dp"
+                android:layout_margin="5dp"
+                android:layout_height="35dp"
+                android:background="@drawable/image_btn_ptz_zoom_out_def" />
+
+            <Button
+                android:id="@+id/single_view"
+                android:layout_width="35dp"
+                android:layout_margin="5dp"
+                android:layout_height="35dp"
+                android:background="@drawable/ch1_def"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal|center_vertical">
+
+            <Button
+                android:id="@+id/ptz_left"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/image_btn_ptz_left_def" />
+            <Button
+                android:id="@+id/ptz_down"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/image_btn_ptz_down_def" />
+            <Button
+                android:id="@+id/ptz_right"
+                android:layout_width="35dp"
+                android:layout_margin="5dp"
+                android:layout_height="35dp"
+                android:background="@drawable/image_btn_ptz_right_def" />
+
+            <Button
+                android:id="@+id/multi_view"
+                android:layout_width="35dp"
+                android:layout_margin="5dp"
+                android:layout_height="35dp"
+                android:background="@drawable/ch4_def"/>
+            <Button
+                android:id="@+id/nine_view"
+                android:layout_width="35dp"
+                android:layout_margin="5dp"
+                android:layout_height="35dp"
+                android:background="@drawable/ch9_def"/>
+        </LinearLayout>
+</LinearLayout>

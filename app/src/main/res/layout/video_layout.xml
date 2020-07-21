@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+        <LinearLayout
+            android:id="@+id/ch123_Linear"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="#2E2E2E"
+            android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/view1_Linear"
+                    android:background="#2E2E2E"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="match_parent">
+                        <SurfaceView
+                            android:background="@drawable/back"
+                            android:layout_margin="1dp"
+                            android:id="@+id/surface1"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/view2_Linear"
+                    android:background="#2E2E2E"
+                    android:layout_width="0dp"
+                    android:layout_weight="0"
+                    android:layout_height="match_parent">
+                        <SurfaceView
+                            android:background="@drawable/back"
+                            android:layout_margin="1dp"
+                            android:id="@+id/surface2"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/view3_Linear"
+                    android:background="#2E2E2E"
+                    android:layout_width="0dp"
+                    android:layout_weight="0"
+                    android:layout_height="match_parent">
+                        <SurfaceView
+                            android:background="@drawable/back"
+                            android:layout_margin="1dp"
+                            android:id="@+id/surface3"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+                </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ch456_Linear"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0"
+            android:background="#2E2E2E"
+            android:orientation="horizontal">
+                <LinearLayout
+                    android:id="@+id/view4_Linear"
+                    android:background="#2E2E2E"
+                    android:layout_width="0dp"
+                    android:layout_weight="0"
+                    android:layout_height="match_parent">
+                        <SurfaceView
+                            android:background="@drawable/back"
+                            android:layout_margin="1dp"
+                            android:id="@+id/surface4"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/view5_Linear"
+                    android:background="#2E2E2E"
+                    android:layout_width="0dp"
+                    android:layout_weight="0"
+                    android:layout_height="match_parent">
+                        <SurfaceView
+                            android:background="@drawable/back"
+                            android:layout_margin="1dp"
+                            android:id="@+id/surface5"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/view6_Linear"
+                    android:background="#2E2E2E"
+                    android:layout_width="0dp"
+                    android:layout_weight="0"
+                    android:layout_height="match_parent">
+                        <SurfaceView
+                            android:background="@drawable/back"
+                            android:layout_margin="1dp"
+                            android:id="@+id/surface6"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+                </LinearLayout>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/ch789_Linear"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0"
+            android:background="#2E2E2E"
+            android:orientation="horizontal">
+                <LinearLayout
+                    android:id="@+id/view7_Linear"
+                    android:background="#2E2E2E"
+                    android:layout_width="0dp"
+                    android:layout_weight="0"
+                    android:layout_height="match_parent">
+                        <SurfaceView
+                            android:background="@drawable/back"
+                            android:layout_margin="1dp"
+                            android:id="@+id/surface7"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/view8_Linear"
+                    android:background="#2E2E2E"
+                    android:layout_width="0dp"
+                    android:layout_weight="0"
+                    android:layout_height="match_parent">
+                        <SurfaceView
+                            android:background="@drawable/back"
+                            android:layout_margin="1dp"
+                            android:id="@+id/surface8"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/view9_Linear"
+                    android:background="#2E2E2E"
+                    android:layout_width="0dp"
+                    android:layout_weight="0"
+                    android:layout_height="match_parent">
+                        <SurfaceView
+                            android:background="@drawable/back"
+                            android:layout_margin="1dp"
+                            android:id="@+id/surface9"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+                </LinearLayout>
+
+        </LinearLayout>
+
+</LinearLayout>
