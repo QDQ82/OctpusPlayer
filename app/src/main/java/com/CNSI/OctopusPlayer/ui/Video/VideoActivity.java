@@ -1120,7 +1120,6 @@ public class VideoActivity extends Activity implements IVLCVout.Callback {
         playstatus_draw(player9);
 
         removecontroler();
-
         InitVideoController();
 
     }
@@ -1205,8 +1204,4 @@ public class VideoActivity extends Activity implements IVLCVout.Callback {
         vd.dismiss();
         unselectview();
     }
-
-
-
-
 }
