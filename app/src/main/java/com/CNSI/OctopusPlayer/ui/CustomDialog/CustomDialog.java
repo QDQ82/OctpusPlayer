@@ -75,8 +75,10 @@ public class CustomDialog extends Dialog {
             if(item.getCameratype().equals("Hanwha"))
             {
                 camera_spinner.setSelection(0);
-            }else{
+            }else if(item.getCameratype().equals("D-Max")){
                 camera_spinner.setSelection(1);
+            }else if(item.getCameratype().equals("Hikvision")){
+                camera_spinner.setSelection(2);
             }
         }else{
             camname.setText(null);

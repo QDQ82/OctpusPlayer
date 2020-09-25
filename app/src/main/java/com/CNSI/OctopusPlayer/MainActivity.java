@@ -3,6 +3,7 @@ package com.CNSI.OctopusPlayer;
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Toast;
@@ -23,6 +24,9 @@ import com.CNSI.OctopusPlayer.ui.share.ShareFragment;
 import com.CNSI.OctopusPlayer.ui.tools.ToolsFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
+import com.hikvision.netsdk.HCNetSDK;
+import com.hikvision.netsdk.NET_DVR_DEVICEINFO_V30;
+
 // Version 1.0 2020/04/01
 public class MainActivity extends AppCompatActivity{
 
@@ -88,6 +92,7 @@ public class MainActivity extends AppCompatActivity{
                 ((HomeFragment)HomeFragment.mHomeFragment).GetCameraDataExecute();
             }
         }, 2000);
+
 
 
     }

@@ -6,8 +6,10 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Base64;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Gravity;
@@ -26,6 +28,9 @@ import com.CNSI.OctopusPlayer.ui.CustomDialog.VideoControlTp;
 import com.CNSI.OctopusPlayer.ui.CustomListview.ListViewItem;
 import com.CNSI.OctopusPlayer.ui.CustomListview.ListViewItemAdapter;
 import com.CNSI.OctopusPlayer.ui.home.HomeFragment;
+import com.hikvision.netsdk.HCNetSDK;
+import com.hikvision.netsdk.NET_DVR_DEVICEINFO_V30;
+import com.hikvision.netsdk.PTZCommand;
 
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpResponse;
@@ -37,6 +42,9 @@ import org.videolan.libvlc.IVLCVout;
 import org.videolan.libvlc.LibVLC;
 import org.videolan.libvlc.MediaPlayer;
 
+import java.net.HttpURLConnection;
+import java.net.URL;
+
 
 public class VideoActivity extends Activity implements IVLCVout.Callback {
 
@@ -44,15 +52,17 @@ public class VideoActivity extends Activity implements IVLCVout.Callback {
     public static final String RTSP_URL = "rtspUrl";
     public static final String CAMIP = "IP";
     public static final String CAMWebPort = "WebPort";
+    public static final String CAMRtspPort = "RTSPPort";
+    public static final String Profile = "Profile";
     public static final String CAMID = "ID";
     public static final String CAMPW = "Password";
     public static final String CameraType = "CamType";
     public static final String CameraName = "CamName";
-
+    private NET_DVR_DEVICEINFO_V30 m_oNetDvrDeviceInfoV30 = null;
     ListViewItem camitem;
     public static Activity mVideoActivity;
     ListViewItemAdapter adapter;
-
+    private int ptznum;
     // display surface
 
     private SurfaceHolder holder;
@@ -94,6 +104,8 @@ public class VideoActivity extends Activity implements IVLCVout.Callback {
     private String rtspUrl;
     private String IP;
     private String WebPort;
+    private String RTSPPort;
+    private String camprofile;
     private String ID;
     private String Password;
     private String CamType;
@@ -872,15 +884,35 @@ public class VideoActivity extends Activity implements IVLCVout.Callback {
         // Get URL
 
         Intent intent = getIntent();
-        camitem = (ListViewItem) intent.getSerializableExtra("LitviewItem");
+        //camitem = (ListViewItem) intent.getSerializableExtra("LitviewItem");
 
+        camitem = new ListViewItem();
         rtspUrl = intent.getExtras().getString(RTSP_URL);
-        IP = camitem.getUrl();
-        WebPort = camitem.getWebport();
-        ID = camitem.getID();
-        Password = camitem.getPW();
-        CamType = camitem.getCameratype();
-        CamName = camitem.getTitle();
+
+        IP = intent.getExtras().getString(CAMIP);
+        camitem.setUrl(IP);
+
+        WebPort = intent.getExtras().getString(CAMWebPort);
+        camitem.setWebport(WebPort);
+
+        RTSPPort = intent.getExtras().getString(CAMRtspPort);
+        camitem.setRTSPPort(RTSPPort);
+
+        ID = intent.getExtras().getString(CAMID);
+        camitem.setID(ID);
+
+        Password = intent.getExtras().getString(CAMPW);
+        camitem.setPW(Password);
+
+        CamType = intent.getExtras().getString(CameraType);
+        camitem.setCameratype(CamType);
+
+        CamName = intent.getExtras().getString(CameraName);
+        camitem.setTitle(CamName);
+
+        camprofile = intent.getExtras().getString(Profile);
+        camitem.setProfile(camprofile);
+
     }
 
     public void PTZEvent(final String Command, final ListViewItem item) {
@@ -894,6 +926,7 @@ public class VideoActivity extends Activity implements IVLCVout.Callback {
                     if(item.getCameratype().equals("Hanwha"))
                     {
                         // 인증
+
                         httpclient.getCredentialsProvider().setCredentials(new AuthScope(item.getUrl(), Integer.parseInt(item.getWebport())), new UsernamePasswordCredentials(item.getID(), item.getPW()));
 
                         switch (Command) {
@@ -948,6 +981,40 @@ public class VideoActivity extends Activity implements IVLCVout.Callback {
                             default:
                                 return;
                         }
+                    }else if(item.getCameratype().equals("Hikvision"))
+                    {
+                        switch (Command) {
+                            case "Left":
+                                item.getHcNetSDK().NET_DVR_PTZControl_Other(item.getLoginid(), 1, PTZCommand.PAN_LEFT, 0);
+                                ptznum = PTZCommand.PAN_LEFT;
+                                break;
+                            case "Right":
+                                item.getHcNetSDK().NET_DVR_PTZControl_Other(item.getLoginid(), 1, PTZCommand.PAN_RIGHT, 0);
+                                ptznum = PTZCommand.PAN_RIGHT;
+                                break;
+                            case "Up":
+                                item.getHcNetSDK().NET_DVR_PTZControl_Other(item.getLoginid(), 1, PTZCommand.TILT_UP, 0);
+                                ptznum = PTZCommand.TILT_UP;
+                                break;
+                            case "Down":
+                                item.getHcNetSDK().NET_DVR_PTZControl_Other(item.getLoginid(), 1, PTZCommand.TILT_DOWN, 0);
+                                ptznum = PTZCommand.TILT_DOWN;
+                                break;
+                            case "ZoomIN":
+                                item.getHcNetSDK().NET_DVR_PTZControl_Other(item.getLoginid(), 1, PTZCommand.ZOOM_IN, 0);
+                                ptznum = PTZCommand.ZOOM_IN;
+                                break;
+                            case "ZoomOut":
+                                item.getHcNetSDK().NET_DVR_PTZControl_Other(item.getLoginid(), 1, PTZCommand.ZOOM_OUT, 0);
+                                ptznum = PTZCommand.ZOOM_OUT;
+                                break;
+                            case "Stop":
+                                item.getHcNetSDK().NET_DVR_PTZControlWithSpeed_Other(item.getLoginid(), 1, ptznum, 1 , 0);
+                                break;
+                            default:
+                                return;
+                        }
+                        return;
                     }
 
                     HttpGet httpget = new HttpGet("http://"+item.getUrl()+":"+item.getWebport()+CGIQuery);

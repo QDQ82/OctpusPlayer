@@ -1,8 +1,10 @@
 package com.CNSI.OctopusPlayer.ui.CustomListview;
 
+import com.hikvision.netsdk.HCNetSDK;
+
 import java.io.Serializable;
 
-public class ListViewItem implements Serializable {
+public class ListViewItem{
 
     //private Drawable icon;
     private String title ;
@@ -13,7 +15,8 @@ public class ListViewItem implements Serializable {
     private String webport;
     private String profile;
     private String cameratype;
-
+    private HCNetSDK hcNetSDK;
+    private int loginid;
 
     //public void setIcon(Drawable _icon){
      //   this.icon = _icon;
@@ -42,8 +45,8 @@ public class ListViewItem implements Serializable {
     public void setCameratype(String _cameratype){
         this.cameratype = _cameratype;
     }
-
-
+    public void setHcNetSDK(HCNetSDK _hcNetSDK){ this.hcNetSDK = _hcNetSDK;}
+    public void setLoginid(int _loinid){this.loginid = _loinid;}
     //public  Drawable getIcon(){
      //   return this.icon;
    // }
@@ -69,8 +72,8 @@ public class ListViewItem implements Serializable {
         return this.profile;
     }
     public String getCameratype() {return this.cameratype;}
-
-
+    public HCNetSDK getHcNetSDK() { return this.hcNetSDK;}
+    public int getLoginid() {return this.loginid;}
 
 
 }

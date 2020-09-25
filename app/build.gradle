@@ -11,6 +11,9 @@ android {
         versionCode 3
         versionName "1.0.2"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        ndk {
+            abiFilters "armeabi-v7a", "x86", "armeabi", "mips", "arm64-v8a", "x86_64"
+        }
     }
     packagingOptions {
         exclude 'META-INF/DEPENDENCIES'
@@ -27,6 +30,9 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
+    }
+    sourceSets.main {
+        jniLibs.srcDirs = ['libs']
     }
 }
 repositories {
@@ -51,4 +57,9 @@ dependencies {
     //implementation 'de.mrmaffen:vlc-android-sdk:3.0.0@aar'
     //implementation 'com.steiner.videolan:libvlc-android:3.1.7'
     implementation name: 'libvlc-android-3.1.7', ext: 'aar'
+    //implementation files('libs/AudioEngineSDK.jar')
+    implementation files('libs/HCNetSDK.jar')
+    //implementation files('libs/jna.jar')
+    //implementation files('libs/PlayerSDK.jar')
+
 }

@@ -154,6 +154,9 @@ public class VideoControlDialog extends Dialog {
             }
         });
 
+
+
+
     }
     @Override protected void onCreate(Bundle savedInstanceState)
     {

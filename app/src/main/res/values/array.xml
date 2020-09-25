@@ -3,5 +3,6 @@
     <string-array name="cameratype">
         <item>Hanwha</item>
         <item>D-Max</item>
+        <item>Hikvision</item>
     </string-array>
 </resources>

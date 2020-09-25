@@ -97,14 +97,17 @@ public class HomeFragment extends Fragment {
 
                 Intent intent = new Intent(getActivity(), VideoActivity.class);
 
-                intent.putExtra("LitviewItem",item);
+                //intent.putExtra("LitviewItem",item);
                 intent.putExtra(VideoActivity.RTSP_URL, stream);
                 intent.putExtra(VideoActivity.CAMIP,ip);
                 intent.putExtra(VideoActivity.CAMWebPort,web);
+                intent.putExtra(VideoActivity.CAMRtspPort,rtsp);
                 intent.putExtra(VideoActivity.CAMID,camid);
                 intent.putExtra(VideoActivity.CAMPW,pw);
                 intent.putExtra(VideoActivity.CameraType,cameratype);
                 intent.putExtra(VideoActivity.CameraName,camname);
+                intent.putExtra(VideoActivity.Profile,profile);
+
 
                 startActivity(intent);
 
@@ -136,16 +139,16 @@ public class HomeFragment extends Fragment {
         {
             Log.d("Addcam","CameraAdd");
             com.CNSI.OctopusPlayer.PreferenceManager.setString(mContext,"addcam","ok");
-            AddCamList("울산1","10.43.96.11","admin", "Tldosdptmdk2","554" , "80" , "/profile2/media.smp","Hanwha");
-            AddCamList("울산2","10.43.96.12","admin", "Tldosdptmdk2","554" , "80" , "/profile2/media.smp","Hanwha");
-            AddCamList("울산3","10.43.96.13","admin", "Tldosdptmdk2","554" , "80" , "/profile2/media.smp","Hanwha");
-            AddCamList("울산4","10.43.96.14","admin", "Tldosdptmdk2","554" , "80" , "/profile2/media.smp","Hanwha");
-            AddCamList("울산5","10.43.96.15","admin", "Tldosdptmdk2","554" , "80" , "/profile2/media.smp","Hanwha");
-            AddCamList("대산1","10.43.97.11","admin", "Tldosdptmdk2","554" , "80" , "/profile2/media.smp","Hanwha");
-            AddCamList("대산2","10.43.97.12","admin", "Tldosdptmdk2","554" , "80" , "/profile2/media.smp","Hanwha");
-            AddCamList("대산3","10.43.97.13","admin", "Tldosdptmdk2","554" , "80" , "/profile2/media.smp","Hanwha");
-            AddCamList("대산4","10.43.97.14","admin", "Tldosdptmdk2","554" , "80" , "/profile2/media.smp","Hanwha");
-            AddCamList("대산5","10.43.97.15","admin", "Tldosdptmdk2","554" , "80" , "/profile2/media.smp","Hanwha");
+            AddCamList("하이크비전","192.168.0.100","admin", "Tldosdptmdk2","554" , "80" , "/Streaming/channels/101","Hanwha");
+//            AddCamList("울산2","10.43.96.12","admin", "Tldosdptmdk2","554" , "80" , "/profile2/media.smp","Hanwha");
+//            AddCamList("울산3","10.43.96.13","admin", "Tldosdptmdk2","554" , "80" , "/profile2/media.smp","Hanwha");
+//            AddCamList("울산4","10.43.96.14","admin", "Tldosdptmdk2","554" , "80" , "/profile2/media.smp","Hanwha");
+//            AddCamList("울산5","10.43.96.15","admin", "Tldosdptmdk2","554" , "80" , "/profile2/media.smp","Hanwha");
+//            AddCamList("대산1","10.43.97.11","admin", "Tldosdptmdk2","554" , "80" , "/profile2/media.smp","Hanwha");
+//            AddCamList("대산2","10.43.97.12","admin", "Tldosdptmdk2","554" , "80" , "/profile2/media.smp","Hanwha");
+//            AddCamList("대산3","10.43.97.13","admin", "Tldosdptmdk2","554" , "80" , "/profile2/media.smp","Hanwha");
+//            AddCamList("대산4","10.43.97.14","admin", "Tldosdptmdk2","554" , "80" , "/profile2/media.smp","Hanwha");
+//            AddCamList("대산5","10.43.97.15","admin", "Tldosdptmdk2","554" , "80" , "/profile2/media.smp","Hanwha");
         }else{
             Log.d("addcam",addcam);
         }

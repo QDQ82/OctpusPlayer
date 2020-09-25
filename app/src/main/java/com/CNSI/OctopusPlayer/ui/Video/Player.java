@@ -9,6 +9,8 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 
 import com.CNSI.OctopusPlayer.ui.CustomListview.ListViewItem;
+import com.hikvision.netsdk.HCNetSDK;
+import com.hikvision.netsdk.NET_DVR_DEVICEINFO_V30;
 
 import org.videolan.libvlc.IVLCVout;
 import org.videolan.libvlc.LibVLC;
@@ -32,18 +34,17 @@ public class Player  {
     public int mWidth;
 
     public int playstatus = 0;
-
+    private int m_iLogID;
     public final static int STREAMING_END = 0;
     public final static int STREAMING_PLAYING = 1;
     public final static int STREAMING_FAIL = 2;
     public final static int STREAMING_LOADING = 3;
-
+    private NET_DVR_DEVICEINFO_V30 m_oNetDvrDeviceInfoV30 = null;
     private IVLCVout.Callback callback;
 
     ArrayList<String> options = new ArrayList<String>();
 
     ListViewItem cameraitem;
-
     private MediaPlayer.EventListener mPlayerListener;
 
     private String name;
@@ -147,6 +148,26 @@ public class Player  {
         ((VideoActivity)VideoActivity.mVideoActivity).drawnotify(mSurface,3);
 
         playstatus = STREAMING_LOADING;
+
+        if(_item.getCameratype().equals("Hikvision")){
+            if (!HCNetSDK.getInstance().NET_DVR_Init()) {
+                Log.d("Hikvision TEST", "HCNetSDK init is failed!");
+            }
+            m_oNetDvrDeviceInfoV30 = new NET_DVR_DEVICEINFO_V30();
+            if (null == m_oNetDvrDeviceInfoV30) {
+                Log.d("Hikvision TEST", "HKNetDvrDeviceInfoV30 new is failed!");
+            }
+            // call NET_DVR_Login_v30 to login on, port 8000 as default
+            int iLogID = HCNetSDK.getInstance().NET_DVR_Login_V30(_item.getUrl(), 8000, _item.getID(), _item.getPW(), m_oNetDvrDeviceInfoV30);
+            if (iLogID < 0) {
+                Log.d("Hikvision TEST", "NET_DVR_Login is failed!Err:" + HCNetSDK.getInstance().NET_DVR_GetLastError());
+            }else{
+                m_iLogID = iLogID;
+                _item.setHcNetSDK(HCNetSDK.getInstance());
+                _item.setLoginid(iLogID);
+            }
+        }
+
     }
 
 
@@ -177,8 +198,13 @@ public class Player  {
                     holder = null;
                     libvlc.release();
                     libvlc = null;
+
                     ((VideoActivity)VideoActivity.mVideoActivity).drawnotify(mSurface,1);
                     playstatus = STREAMING_END;
+                    m_iLogID = -1;
+                    if(cameraitem.getCameratype().equals("Hikvision")) {
+                        HCNetSDK.getInstance().NET_DVR_Logout_V30(m_iLogID);
+                    }
                     tmr.cancel();
 
                 }
