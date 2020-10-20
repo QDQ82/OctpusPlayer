@@ -81,7 +81,7 @@ public class HomeFragment extends Fragment {
                 ListViewItem item = (ListViewItem) parent.getItemAtPosition(position) ;
 
                 String titleStr = item.getTitle();
-
+                String rtspurl = item.getRtspurl();
                 String ip = item.getUrl();
                 String camid = item.getID();
                 String pw = item.getPW();
@@ -98,7 +98,13 @@ public class HomeFragment extends Fragment {
                 Intent intent = new Intent(getActivity(), VideoActivity.class);
 
                 //intent.putExtra("LitviewItem",item);
-                intent.putExtra(VideoActivity.RTSP_URL, stream);
+
+                if(rtspurl.contains("rtsp")){
+                    intent.putExtra(VideoActivity.RTSP_URL, rtspurl);
+                }else{
+                    intent.putExtra(VideoActivity.RTSP_URL, stream);
+                }
+
                 intent.putExtra(VideoActivity.CAMIP,ip);
                 intent.putExtra(VideoActivity.CAMWebPort,web);
                 intent.putExtra(VideoActivity.CAMRtspPort,rtsp);
@@ -139,7 +145,8 @@ public class HomeFragment extends Fragment {
         {
             Log.d("Addcam","CameraAdd");
             com.CNSI.OctopusPlayer.PreferenceManager.setString(mContext,"addcam","ok");
-            AddCamList("하이크비전","192.168.0.100","admin", "Tldosdptmdk2","554" , "80" , "/Streaming/channels/101","Hanwha");
+            AddCamList("이동식카메라1","rtsp://jangchagun2.iptime.org:554/proxy1","223.171.67.133","admin", "Tldosdptmdk2","554" , "8000" , "/Streaming/channels/101","Hikvision");
+            AddCamList("이동식카메라2","rtsp://jangchagun2.iptime.org:554/proxy1","223.171.67.134","admin", "Tldosdptmdk2","554" , "8000" , "/Streaming/channels/101","Hikvision");
 //            AddCamList("울산2","10.43.96.12","admin", "Tldosdptmdk2","554" , "80" , "/profile2/media.smp","Hanwha");
 //            AddCamList("울산3","10.43.96.13","admin", "Tldosdptmdk2","554" , "80" , "/profile2/media.smp","Hanwha");
 //            AddCamList("울산4","10.43.96.14","admin", "Tldosdptmdk2","554" , "80" , "/profile2/media.smp","Hanwha");
@@ -246,7 +253,7 @@ public class HomeFragment extends Fragment {
                         String id = id_pw[0]; //정상
                         String pw = id_pw[1]; //정상
 
-                        adapter.addItem(cam,ip,id,pw,rtsp,"80",profile,"Hanwha");
+                        adapter.addItem(cam,ip,ip,id,pw,rtsp,"80",profile,"Hanwha");
 
                     }else {
                         return;
@@ -272,6 +279,7 @@ public class HomeFragment extends Fragment {
             {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
                 String cam = jsonObject.getString("cam");
+                String rtspurl = jsonObject.getString("rtspurl");
                 String url = jsonObject.getString("url");
                 String id = jsonObject.getString("id");
                 String pw = jsonObject.getString("pw");
@@ -280,7 +288,7 @@ public class HomeFragment extends Fragment {
                 String profile = jsonObject.getString("profile");
                 String cameratype = jsonObject.getString("cameratype");
 
-                adapter.addItem(cam,url,id,pw,rtsp,web,profile,cameratype);
+                adapter.addItem(cam,rtspurl, url,id,pw,rtsp,web,profile,cameratype);
             }
             listview.setAdapter(adapter); // 리스트 뷰에 그리기 적용
 
@@ -300,11 +308,11 @@ public class HomeFragment extends Fragment {
         adapter.DataUpdate();
         com.CNSI.OctopusPlayer.PreferenceManager.setString(mContext,"CameraList",adapter.get_camlist_json().toString()); // 새로 생성된 JSON 데이터 저장
     }
-    public void AddCamList(String _title, String _ip, String _id, String _pw, String _rtsp, String _web, String _profile, String _cameratype)
+    public void AddCamList(String _title, String _rtspurl, String _ip, String _id, String _pw, String _rtsp, String _web, String _profile, String _cameratype)
     {
         try
         {
-            adapter.addItem(_title , _ip , _id , _pw , _rtsp , _web , _profile , _cameratype);        // 카메라 아이템 추가 & JSON 생성
+            adapter.addItem(_title , _rtspurl, _ip , _id , _pw , _rtsp , _web , _profile , _cameratype);        // 카메라 아이템 추가 & JSON 생성
 
             RefreshListView();
 

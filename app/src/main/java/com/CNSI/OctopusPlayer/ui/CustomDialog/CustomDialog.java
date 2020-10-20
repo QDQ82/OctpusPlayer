@@ -61,6 +61,7 @@ public class CustomDialog extends Dialog {
         final EditText rtspport = (EditText)this.findViewById(R.id.edit_rtsp);
         final EditText webport = (EditText)this.findViewById(R.id.edit_web);
         final EditText profile = (EditText)this.findViewById(R.id.edit_profile);
+        final EditText rtspurl = (EditText)this.findViewById(R.id.edit_rtspurl);
 
         if(type.equals("edit"))
         {
@@ -71,6 +72,7 @@ public class CustomDialog extends Dialog {
             rtspport.setText(item.getRtspport());
             webport.setText(item.getWebport());
             profile.setText(item.getProfile());
+            rtspurl.setText(item.getRtspurl());
 
             if(item.getCameratype().equals("Hanwha"))
             {
@@ -80,6 +82,7 @@ public class CustomDialog extends Dialog {
             }else if(item.getCameratype().equals("Hikvision")){
                 camera_spinner.setSelection(2);
             }
+
         }else{
             camname.setText(null);
             ip.setText(null);
@@ -88,6 +91,7 @@ public class CustomDialog extends Dialog {
             rtspport.setText("554");
             webport.setText("80");
             profile.setText("/profile2/media.smp");
+            rtspurl.setText(null);
             camera_spinner.setSelection(0);
         }
 
@@ -103,7 +107,13 @@ public class CustomDialog extends Dialog {
                 }
                 if(ip.getText().toString().length() == 0)
                 {
-                    Toast.makeText(context, "카메라 RTSP 주소를 입력해주세요.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "카메라 IP 주소를 입력해주세요.", Toast.LENGTH_SHORT).show();
+
+                    return;
+                }
+                if(ip.getText().toString().length() == 0)
+                {
+                    Toast.makeText(context, "카메라 IP 주소를 입력해주세요.", Toast.LENGTH_SHORT).show();
 
                     return;
                 }
@@ -140,12 +150,13 @@ public class CustomDialog extends Dialog {
 
                 if(type.equals("add"))
                 {
-                    ((HomeFragment)HomeFragment.mHomeFragment).AddCamList(camname.getText().toString(),ip.getText().toString(), userid.getText().toString(), userpw.getText().toString(), rtspport.getText().toString(), webport.getText().toString(), profile.getText().toString(),camera_spinner.getSelectedItem().toString());
+                    ((HomeFragment)HomeFragment.mHomeFragment).AddCamList(camname.getText().toString(), rtspurl.getText().toString(), ip.getText().toString(), userid.getText().toString(), userpw.getText().toString(), rtspport.getText().toString(), webport.getText().toString(), profile.getText().toString(),camera_spinner.getSelectedItem().toString());
                     Toast.makeText(context, camname.getText().toString() +  "을 추가하였습니다.", Toast.LENGTH_SHORT).show();
                 }
                 else if(type.equals("edit"))
                 {
                     item.setTitle(camname.getText().toString());
+                    item.setRtspurl(rtspurl.getText().toString());
                     item.setUrl(ip.getText().toString());
                     item.setID(userid.getText().toString());
                     item.setPW(userpw.getText().toString());

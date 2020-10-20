@@ -61,13 +61,18 @@ public class ListViewItemAdapter extends BaseAdapter {
         Drawable icon = context.getResources().getDrawable(R.drawable.cctv_2);
         iconImageView.setImageDrawable(icon);
         titleTextView.setText(listViewItem.getTitle());
-        stream = "rtsp://" + listViewItem.getID() + ":" + listViewItem.getPW() + "@" + listViewItem.getUrl() + ":" + listViewItem.getRtspport() + listViewItem.getProfile();
+        if(listViewItem.getRtspurl().contains("rtsp")){
+            stream = listViewItem.getRtspurl();
+        }else{
+            stream = "rtsp://" + listViewItem.getID() + ":" + listViewItem.getPW() + "@" + listViewItem.getUrl() + ":" + listViewItem.getRtspport() + listViewItem.getProfile();
+        }
+
         urlTextView.setText(stream);
 
         return convertView;
     }
 
-    public boolean addItem(String _title, String _url, String _id, String _pw, String _rtsp, String _web, String _profile, String _cameratype)  // 카메라 아이템 추가
+    public boolean addItem(String _title, String _rtspurl, String _url, String _id, String _pw, String _rtsp, String _web, String _profile, String _cameratype)  // 카메라 아이템 추가
     {
 
         for(int i = 0; i < listViewitemList.size(); i++)
@@ -88,6 +93,7 @@ public class ListViewItemAdapter extends BaseAdapter {
         item.setWebport(_web);
         item.setProfile(_profile);
         item.setCameratype(_cameratype);
+        item.setRtspurl(_rtspurl);
 
         //stream = "rtsp://" + _id + ":" + _pw + "@" + _url + ":" + _rtsp + _profile;
         listViewitemList.add(item);
@@ -109,6 +115,7 @@ public class ListViewItemAdapter extends BaseAdapter {
                 {
                     sObject = new JSONObject();
                     sObject.put("cam",listViewitemList.get(i).getTitle());
+                    sObject.put("rtspurl",listViewitemList.get(i).getRtspurl());
                     sObject.put("url",listViewitemList.get(i).getUrl());
                     sObject.put("id",listViewitemList.get(i).getID());
                     sObject.put("pw",listViewitemList.get(i).getPW());

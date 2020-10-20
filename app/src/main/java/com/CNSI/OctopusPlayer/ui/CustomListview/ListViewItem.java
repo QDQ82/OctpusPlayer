@@ -16,6 +16,7 @@ public class ListViewItem{
     private String profile;
     private String cameratype;
     private HCNetSDK hcNetSDK;
+    private String rtspurl;
     private int loginid;
 
     //public void setIcon(Drawable _icon){
@@ -47,6 +48,7 @@ public class ListViewItem{
     }
     public void setHcNetSDK(HCNetSDK _hcNetSDK){ this.hcNetSDK = _hcNetSDK;}
     public void setLoginid(int _loinid){this.loginid = _loinid;}
+    public void setRtspurl(String _rtspurl){this.rtspurl = _rtspurl;}
     //public  Drawable getIcon(){
      //   return this.icon;
    // }
@@ -73,6 +75,7 @@ public class ListViewItem{
     }
     public String getCameratype() {return this.cameratype;}
     public HCNetSDK getHcNetSDK() { return this.hcNetSDK;}
+    public String getRtspurl() { return this.rtspurl;}
     public int getLoginid() {return this.loginid;}
 
 

@@ -59,6 +59,27 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="20dp"
+                android:text="카메라 RTSP URL"
+                android:textSize="15dp"
+                android:textColor="@color/mainorange"/>
+            <EditText
+                android:id="@+id/edit_rtspurl"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:gravity="center"
+                android:textColor="#ffffff"
+                android:textColorHint="#ffffff"
+                android:textSize="16dp"
+                android:hint="카메라 RTSP URL을 입력하세요."/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="60dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
                 android:text="사용자 ID"
                 android:textSize="15dp"
                 android:textColor="@color/mainorange"/>

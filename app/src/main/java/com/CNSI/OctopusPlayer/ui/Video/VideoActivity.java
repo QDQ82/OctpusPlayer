@@ -887,7 +887,9 @@ public class VideoActivity extends Activity implements IVLCVout.Callback {
         //camitem = (ListViewItem) intent.getSerializableExtra("LitviewItem");
 
         camitem = new ListViewItem();
+
         rtspUrl = intent.getExtras().getString(RTSP_URL);
+        camitem.setRtspurl(rtspUrl);
 
         IP = intent.getExtras().getString(CAMIP);
         camitem.setUrl(IP);

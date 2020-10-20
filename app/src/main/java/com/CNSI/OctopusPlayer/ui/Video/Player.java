@@ -101,8 +101,11 @@ public class Player  {
 
         mSurface = _surfaceView;
 
-        rtspUrl = _url;
-
+        if(_item.getRtspurl().contains("rtsp")){
+            rtspUrl = _item.getRtspurl();
+        }else{
+            rtspUrl = _url;
+        }
         mWidth = width;
 
         mHeight = height;
@@ -272,6 +275,7 @@ public class Player  {
             @Override
             public void run() {
                 time = mMediaPlayer.getTime();
+
                 if(time <= 0){
                     cnt++;
                 }else{
@@ -302,6 +306,18 @@ public class Player  {
                         }
                     }, 0);
                     cancel();
+                }
+                if(mMediaPlayer.isPlaying()){
+                    Handler mHandler = new Handler(Looper.getMainLooper());
+                    mHandler.postDelayed(new Runnable() {
+                        @Override
+                        public void run(){
+                            ((VideoActivity)VideoActivity.mVideoActivity).drawnotify(mSurface,0);
+                            playstatus = STREAMING_PLAYING;
+                        }
+                    }, 0);
+                    play = true;
+                    cnt = 0;
                 }
                 //todo
             }
