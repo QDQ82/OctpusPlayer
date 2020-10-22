@@ -12,7 +12,12 @@
             android:layout_height="40dp"
             android:layout_margin="5dp"
             android:background="@drawable/image_btn_ptz_left_def" />
-
+        <Button
+            android:id="@+id/ptz_up"
+            android:layout_width="40dp"
+            android:layout_margin="5dp"
+            android:layout_height="40dp"
+            android:background="@drawable/image_btn_ptz_up_def" />
         <Button
             android:id="@+id/ptz_right"
             android:layout_width="40dp"
@@ -27,19 +32,14 @@
             android:layout_margin="5dp"
             android:background="@drawable/image_btn_ptz_down_def" />
 
-        <Button
-            android:id="@+id/ptz_up"
-            android:layout_width="40dp"
-            android:layout_margin="5dp"
-            android:layout_height="40dp"
-            android:background="@drawable/image_btn_ptz_up_def" />
+
 
         <Button
             android:id="@+id/ptz_zoomin"
             android:layout_width="40dp"
             android:layout_margin="5dp"
             android:layout_height="40dp"
-            android:background="@drawable/image_btn_ptz_zoom_in_def"/>
+            android:background="@drawable/image_btn_ptz_zoom_in_def" />
         <Button
             android:id="@+id/ptz_zoomout"
             android:layout_width="40dp"

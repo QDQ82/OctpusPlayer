@@ -18,27 +18,33 @@
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:layout_margin="5dp"
-                android:background="@drawable/image_btn_ptz_zoom_in_def"/>
+                android:background="@drawable/image_btn_ptz_zoom_in_def" />
             <Button
                 android:id="@+id/ptz_up"
                 android:layout_width="35dp"
                 android:layout_margin="5dp"
                 android:layout_height="35dp"
                 android:background="@drawable/image_btn_ptz_up_def" />
-
             <Button
                 android:id="@+id/ptz_zoomout"
                 android:layout_width="35dp"
                 android:layout_margin="5dp"
                 android:layout_height="35dp"
                 android:background="@drawable/image_btn_ptz_zoom_out_def" />
-
             <Button
                 android:id="@+id/single_view"
                 android:layout_width="35dp"
                 android:layout_margin="5dp"
                 android:layout_height="35dp"
                 android:background="@drawable/ch1_def"/>
+            <Button
+                android:id="@+id/nine_view_extra"
+                android:layout_width="35dp"
+                android:layout_margin="5dp"
+                android:layout_height="35dp"
+                android:background="@drawable/ch9_def"
+                android:visibility="invisible"/>
+
 
         </LinearLayout>
         <LinearLayout
@@ -65,7 +71,6 @@
                 android:layout_margin="5dp"
                 android:layout_height="35dp"
                 android:background="@drawable/image_btn_ptz_right_def" />
-
             <Button
                 android:id="@+id/multi_view"
                 android:layout_width="35dp"

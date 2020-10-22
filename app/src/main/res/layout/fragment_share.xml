@@ -21,7 +21,7 @@
         android:layout_marginLeft="8dp"
         android:textSize="15dp"
         android:textColor="#ffffff"
-        android:text="Octopus Viewer Version 1.0"
+        android:text="Octopus Viewer Version 1.5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
     <TextView
@@ -29,7 +29,7 @@
         android:layout_marginLeft="8dp"
         android:textSize="15dp"
         android:textColor="#ffffff"
-        android:text="Date : 2020.03.27"
+        android:text="Date : 2020.10.20"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 

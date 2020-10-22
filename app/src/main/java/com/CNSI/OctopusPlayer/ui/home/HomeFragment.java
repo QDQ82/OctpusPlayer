@@ -145,8 +145,8 @@ public class HomeFragment extends Fragment {
         {
             Log.d("Addcam","CameraAdd");
             com.CNSI.OctopusPlayer.PreferenceManager.setString(mContext,"addcam","ok");
-            AddCamList("이동식카메라1","rtsp://jangchagun2.iptime.org:554/proxy1","223.171.67.133","admin", "Tldosdptmdk2","554" , "8000" , "/Streaming/channels/101","Hikvision");
-            AddCamList("이동식카메라2","rtsp://jangchagun2.iptime.org:554/proxy1","223.171.67.134","admin", "Tldosdptmdk2","554" , "8000" , "/Streaming/channels/101","Hikvision");
+            // AddCamList("이동식카메라1","rtsp://jangchagun2.iptime.org:554/proxy1","223.171.67.133","admin", "Tldosdptmdk2","554" , "8000" , "/Streaming/channels/101","Hikvision");
+            // AddCamList("이동식카메라2","rtsp://jangchagun2.iptime.org:554/proxy2","223.171.67.134","admin", "Tldosdptmdk2","554" , "8000" , "/Streaming/channels/101","Hikvision");
 //            AddCamList("울산2","10.43.96.12","admin", "Tldosdptmdk2","554" , "80" , "/profile2/media.smp","Hanwha");
 //            AddCamList("울산3","10.43.96.13","admin", "Tldosdptmdk2","554" , "80" , "/profile2/media.smp","Hanwha");
 //            AddCamList("울산4","10.43.96.14","admin", "Tldosdptmdk2","554" , "80" , "/profile2/media.smp","Hanwha");
@@ -218,7 +218,7 @@ public class HomeFragment extends Fragment {
     public void GetCameraData()
     {
         try {
-
+            String serverip = com.CNSI.OctopusPlayer.PreferenceManager.getString(mContext,"ServerIP"); // 자체 디비
             if(server_camdata != null)
             {
                 JSONArray serverarr = new JSONArray(server_camdata);
@@ -230,6 +230,9 @@ public class HomeFragment extends Fragment {
 
                     String cam = proxy.getString("suffix");
                     String url = proxy.getString("url");
+                    String id = proxy.getString("user");
+                    String pw = proxy.getString("pass");
+
 
                     if(url.contains("@"))
                     {
@@ -250,13 +253,29 @@ public class HomeFragment extends Fragment {
                         String[] rtsp_id_pw = all_url[0].split("rtsp://");
                         String[] id_pw = rtsp_id_pw[1].split(":");
 
-                        String id = id_pw[0]; //정상
-                        String pw = id_pw[1]; //정상
+                        id = id_pw[0]; //정상
+                        pw = id_pw[1]; //정상
 
-                        adapter.addItem(cam,ip,ip,id,pw,rtsp,"80",profile,"Hanwha");
+                        adapter.addItem(cam, url, ip ,id,pw,rtsp,"80",profile,"Hanwha");
 
                     }else {
-                        return;
+                        String[] _split1 = url.split("rtsp://");
+                        String[] _split2 = _split1[1].split(":");
+                        String camip = _split2[0];
+                        String[] _split3 = _split2[1].split("/");
+                        String rtspport = _split3[0];
+                        String[] _split4 = _split2[1].split(rtspport);
+                        String profile = _split4[1];
+
+                        String StreamingServerURL = "rtsp://" + serverip + ":" + rtspport +"/" + cam;
+
+                        if(profile.contains("Streaming")){
+                            adapter.addItem(cam, StreamingServerURL, camip ,id,pw,rtspport,"8000",profile,"Hikvision");
+                        }else{
+                            adapter.addItem(cam, StreamingServerURL, camip ,id, pw,rtspport,"80",profile,"Hanwha");
+                        }
+
+
                     }
                 }
 

@@ -18,7 +18,7 @@ public class HttpRequestData {
     }
     public String GetData(String _ip){
         try{
-            URL url = new URL("http://" + _ip + "/webstream/HTML/common/api/get_data.php");
+            URL url = new URL("http://" + _ip + "/HTML/common/api/get_data.php");
             HttpURLConnection http = (HttpURLConnection) url.openConnection();
             http.setReadTimeout(1000);
             http.setConnectTimeout(1000);

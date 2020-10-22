@@ -29,7 +29,7 @@
             android:layout_marginTop="10dp"
             android:paddingLeft="10dp"
             android:hint="서버 IP를 입력하세요."
-            android:text="192.168.0.158"
+            android:text="jangchagun2.iptime.org"
             android:backgroundTint="#ffffff"
             android:textColor="#ffffff"
             android:textColorHint="@color/white"

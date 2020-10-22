@@ -185,6 +185,9 @@ public class Player  {
 
     public void releasePlayer() {
         try {
+            if(cameraitem.getCameratype().equals("Hikvision")) {
+                HCNetSDK.getInstance().NET_DVR_Logout_V30(m_iLogID);
+            }
             this.name = "";
             this.cameraitem = null;
             vout.setWindowSize(0,0);
@@ -205,9 +208,7 @@ public class Player  {
                     ((VideoActivity)VideoActivity.mVideoActivity).drawnotify(mSurface,1);
                     playstatus = STREAMING_END;
                     m_iLogID = -1;
-                    if(cameraitem.getCameratype().equals("Hikvision")) {
-                        HCNetSDK.getInstance().NET_DVR_Logout_V30(m_iLogID);
-                    }
+
                     tmr.cancel();
 
                 }
@@ -275,7 +276,6 @@ public class Player  {
             @Override
             public void run() {
                 time = mMediaPlayer.getTime();
-
                 if(time <= 0){
                     cnt++;
                 }else{
@@ -293,6 +293,21 @@ public class Player  {
                     play = true;
                     cnt = 0;
                 }
+                if(mMediaPlayer.isPlaying()){
+                    Handler mHandler = new Handler(Looper.getMainLooper());
+                    mHandler.postDelayed(new Runnable() {
+                        @Override
+                        public void run(){
+                            ((VideoActivity)VideoActivity.mVideoActivity).drawnotify(mSurface,0);
+                            playstatus = STREAMING_PLAYING;
+                        }
+                    }, 0);
+                    play = true;
+                    cnt = 0;
+                }else{
+                    cnt++;
+                }
+
                 if(cnt > 30)
                 {
                     Log.d("Log", "NOPLAY");
@@ -306,18 +321,6 @@ public class Player  {
                         }
                     }, 0);
                     cancel();
-                }
-                if(mMediaPlayer.isPlaying()){
-                    Handler mHandler = new Handler(Looper.getMainLooper());
-                    mHandler.postDelayed(new Runnable() {
-                        @Override
-                        public void run(){
-                            ((VideoActivity)VideoActivity.mVideoActivity).drawnotify(mSurface,0);
-                            playstatus = STREAMING_PLAYING;
-                        }
-                    }, 0);
-                    play = true;
-                    cnt = 0;
                 }
                 //todo
             }
